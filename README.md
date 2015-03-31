@@ -26,6 +26,8 @@ This image is based on [mengzyou/docker-apache-php](https://registry.hub.docker.
 
 #### Usage
 Go to your laravel project directory, then run:  
-`docker run -p 80:80 -v \`pwd\`:/var/www -d mengzyou/docker-laravel-dev`  
+```shell
+docker run -p 80:80 -v `pwd`:/var/www -d mengzyou/docker-laravel-dev  
+```
   
 *NOTE:* Ensure the write permisions on `storage` directory of your laravel project.
