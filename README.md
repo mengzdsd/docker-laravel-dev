@@ -3,26 +3,29 @@ Build a opensuse image for development laravel development.
   
 This image is based on [mengzyou/docker-apache-php](https://registry.hub.docker.com/u/mengzyou/docker-apache-php/) image.
 
+### PHP Version
+5.6
+
 #### Packages
-- libX11-data-1.6.2-5.1.2  
-- libXau6-1.0.8-5.1.2  
-- libmcrypt-2.5.8-116.1.2  
-- libX11-6-1.6.2-5.1.2  
-- libXpm4-3.5.11-4.1.2  
-- curl-7.40.0-4.1  
-- libjpeg8-8.0.2-30.5.1  
-- libpng16-16-1.6.13-2.4.1  
-- php5-ctype-5.6.6-273.3  
-- php5-json-5.6.6-273.3  
-- php5-mbstring-5.6.6-273.3  
-- php5-openssl-5.6.6-273.3  
-- php5-pdo-5.6.6-273.3  
-- php5-phar-5.6.6-273.3  
-- php5-tokenizer-5.6.6-273.3  
-- php5-mcrypt-5.6.6-273.3  
-- php5-mysql-5.6.6-273.3  
-- libfreetype6-2.5.3-2.1.3  
-- php5-gd-5.6.6-273.3  
+- libX11-data
+- libXau6
+- libmcrypt
+- libX11
+- libXpm
+- curl
+- libjpeg8
+- libpng16
+- php5-ctype
+- php5-json
+- php5-mbstring
+- php5-openssl
+- php5-pdo
+- php5-phar
+- php5-tokenizer
+- php5-mcrypt
+- php5-mysql
+- libfreetype6
+- php5-gd
 
 #### Usage
 Go to your laravel project directory, then run:  
