@@ -16,21 +16,22 @@ RUN zypper -n --gpg-auto-import-keys ref \
 RUN a2enmod rewrite
 
 #
-RUN rm -f /etc/apache2/default-server.conf \
+RUN rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
   && mkdir -p /var/www \
   && chown -R wwwrun:www /var/www
 
 ADD conf/default-server.conf /etc/apache2/default-server.conf
+ADD conf/httpd.conf /etc/apache2/httpd.conf
 
 VOLUME ["/var/www"]
 
 # Install php-composer
 COPY tools/composer /usr/local/bin/
 
-ENTRYPOINT []
+ENTRYPOINT ["start_apache2"]
 
 # Expose ports
 EXPOSE 80
 
 # Start apache
-CMD ["start_apache2","-DFOREGROUND"]
+CMD ["-DFOREGROUND"]
