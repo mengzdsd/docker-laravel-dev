@@ -2,21 +2,18 @@
 FROM mengzyou/docker-apache-php
 MAINTAINER Mengz You <you.mengz@yahoo.com>
 
-# ENV
-
-# Add repo
-RUN zypper ar -f -r http://download.opensuse.org/repositories/server:/php:/extensions/openSUSE_13.2/server:php:extensions.repo
-
-# Refresh repositories and install packages
-RUN zypper -n --gpg-auto-import-keys ref \
-  && zypper -n in --no-recommends curl php5-mcrypt php5-openssl php5-mbstring php5-tokenizer php5-json php5-mysql php5-gd php5-phar php5-ctype \
+# Add repo, Refresh repositories and install packages
+RUN zypper -q ar -f -r http://download.opensuse.org/repositories/server:/php:/extensions/openSUSE_13.2/server:php:extensions.repo \
+  && zypper -qn --gpg-auto-import-keys ref \
+  && zypper -qn in -l --no-recommends curl php5-mcrypt php5-openssl php5-mbstring php5-tokenizer php5-json php5-mysql php5-gd php5-phar php5-ctype \
   && zypper clean -a
 
-# Open apache rewrite module
-RUN a2enmod rewrite
+# Install php-composer
+COPY tools/composer /usr/local/bin/
 
-#
-RUN rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
+# Open apache rewrite module
+RUN a2enmod rewrite \
+  && rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
   && mkdir -p /var/www \
   && chown -R wwwrun:www /var/www
 
@@ -24,9 +21,6 @@ ADD conf/default-server.conf /etc/apache2/default-server.conf
 ADD conf/httpd.conf /etc/apache2/httpd.conf
 
 VOLUME ["/var/www"]
-
-# Install php-composer
-COPY tools/composer /usr/local/bin/
 
 ENTRYPOINT ["start_apache2"]
 
