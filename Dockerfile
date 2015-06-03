@@ -1,5 +1,5 @@
 # This is a Dockerfile for build a opensuse image for development based on laravel
-FROM mengzyou/docker-apache-php
+FROM mengzyou/docker-apache-php:latest
 MAINTAINER Mengz You <you.mengz@yahoo.com>
 
 # Add repo, Refresh repositories and install packages
