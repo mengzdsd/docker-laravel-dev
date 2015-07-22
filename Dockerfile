@@ -11,9 +11,8 @@ RUN zypper -q ar -f -r http://download.opensuse.org/repositories/server:/php:/ex
 # Install php-composer
 COPY tools/composer /usr/local/bin/
 
-# Open apache rewrite module
-RUN a2enmod rewrite \
-  && rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
+# Replace the default configuration
+RUN rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
   && mkdir -p /var/www \
   && chown -R wwwrun:www /var/www
 

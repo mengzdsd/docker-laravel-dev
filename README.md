@@ -7,7 +7,7 @@ This image is based on [mengzyou/docker-apache-php](https://registry.hub.docker.
 `5.6.9`
 
 ### Composer Version
-`Composer version 1.0-dev (0ec86be5e988261e8b625ac696d566afa2c35faf) 2015-05-31 11:54:08`
+`Composer version 1.0-dev (c6cc6dd6070871f4b198ed39f76dd8047c116b02) 2015-07-21 13:46:38`
 
 #### Packages
 - php5-ctype
