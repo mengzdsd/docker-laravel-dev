@@ -11,15 +11,18 @@ RUN zypper -q ar -f -r http://download.opensuse.org/repositories/server:/php:/ex
 # Install php-composer
 COPY tools/composer /usr/local/bin/
 
-# Replace the default configuration
-RUN rm -f /etc/apache2/default-server.conf /etc/apache2/httpd.conf \
-  && mkdir -p /var/www \
-  && chown -R wwwrun:www /var/www
+# Configure the directory for app
+RUN mkdir -p /srv/laravel \
+  && chown -R wwwrun:www /srv/laravel
 
-ADD conf/default-server.conf /etc/apache2/default-server.conf
-ADD conf/httpd.conf /etc/apache2/httpd.conf
+# Customize apache2 configuration
+RUN sed -i -e 's#APACHE_CONF_INCLUDE_FILES=""#APACHE_CONF_INCLUDE_FILES="/etc/apache2/httpd.conf.local"#' /etc/sysconfig/apache2 \
+  && sed -i -e 's#/srv/www/htdocs#/srv/laravel/public#' /etc/apache2/default-server.conf
 
-VOLUME ["/var/www"]
+ADD conf/httpd.conf.local /etc/apache2/httpd.conf.local
+
+# Set Volume
+VOLUME ["/srv/laravel"]
 
 ENTRYPOINT ["start_apache2"]
 

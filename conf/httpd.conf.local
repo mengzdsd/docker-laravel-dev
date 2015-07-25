@@ -1,0 +1,3 @@
+# Set the Custom log
+LogLevel alert rewrite:trace3
+CustomLog /srv/laravel/storage/logs/apache2-access_log combined
