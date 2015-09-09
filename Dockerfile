@@ -1,11 +1,11 @@
 # This is a Dockerfile for build a opensuse image for development based on laravel
-FROM mengzyou/docker-apache-php:latest
-MAINTAINER Mengz You <you.mengz@yahoo.com>
+FROM mengzyou/docker-php:5.6-apache-server
+MAINTAINER Mengz You <mengz.you@outlook.com>
 
 # Add repo, Refresh repositories and install packages
 RUN zypper -q ar -f -r http://download.opensuse.org/repositories/server:/php:/extensions/openSUSE_13.2/server:php:extensions.repo \
   && zypper -qn --gpg-auto-import-keys ref \
-  && zypper -qn in -l --no-recommends curl php5-mcrypt php5-openssl php5-mbstring php5-tokenizer php5-json php5-mysql php5-gd php5-phar php5-ctype \
+  && zypper -qn in -l --no-recommends curl php5-mcrypt php5-openssl php5-phar php5-pdo \
   && zypper clean -a
 
 # Install php-composer
